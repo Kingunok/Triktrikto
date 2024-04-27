@@ -1,6 +1,6 @@
 import os
 try:
-  import telethon
+  import pyrogram
 except:
   os.system("pip3 install -U -r requirements.txt")
 
