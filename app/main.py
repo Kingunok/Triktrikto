@@ -6,10 +6,10 @@ import aiohttp_jinja2
 import jinja2
 from aiohttp import web
 
-from .telegram import Client
+from .telegram import CustomClient 
 from .routes import setup_routes
 from .views import Views
-from .config import host, port, session_string, api_id, api_hash, debug
+from .config import host, port, api_id, api_hash, debug,bot_token,sleep_threshold,workers
 
 
 log = logging.getLogger(__name__)
@@ -22,7 +22,7 @@ class Indexer:
     def __init__(self):
         self.server = web.Application()
         self.loop = asyncio.get_event_loop()
-        self.tg_client = Client(session_string, api_id, api_hash)
+        self.tg_client = CustomClient('bot', api_id, api_hash, bot_token=bot_token, workers=workers,sleep_threshold=sleep_threshold)
 
 
     async def startup(self):
