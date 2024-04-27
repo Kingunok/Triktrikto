@@ -48,11 +48,17 @@ except:
     sys.exit(1)
 
 try:
-    session_string = os.environ["SESSION_STRING"]
+    bot_token = os.environ["BOT_TOKEN"]
 except (KeyError, ValueError):
     traceback.print_exc()
-    print("\n\nPlease set the SESSION_STRING environment variable correctly")
+    print("\n\nPlease set the BOT_TOKEN environment variable correctly")
     sys.exit(1)
+
+
+try:
+    workers = os.environ["WORKERS"]
+    sleep_threshold = os.environ["SLEEP_THRESHOLD"]
+    multi_clients = True
 
 # try:
 #     bot_token = os.environ["BOT_TOKEN"]
