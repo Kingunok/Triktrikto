@@ -1,10 +1,10 @@
 import math
 import logging
 import asyncio
-from ..vars import Var
 from pyrogram import Client
 from utils.config_parser import TokenParser
 from botCode import multi_clients, work_loads, bot
+from config import workers,multi_clients,bot_token,api_hash,api_id,sleep_threshold 
 
 class CustomClient(Client):
     async def initialize_clients(self):
@@ -37,7 +37,7 @@ class CustomClient(Client):
         clients = await asyncio.gather(*[start_client(i, token) for i, token in all_tokens.items()])
         multi_clients.update(dict(clients))
         if len(multi_clients) != 1:
-            Var.MULTI_CLIENT = True
+            multi_clients = True
             print("Multi-Client Mode Enabled")
         else:
             print("No additional clients were initialized, using default client")
