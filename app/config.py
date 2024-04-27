@@ -59,6 +59,11 @@ try:
     workers = os.environ["WORKERS"]
     sleep_threshold = os.environ["SLEEP_THRESHOLD"]
     multi_clients = True
+    name = 'tgindex'
+except (KeyError, ValueError):
+    traceback.print_exc()
+    print("\n\nPlease set the WORKERS,SLEEP_THRESHOLD environment variable correctly")
+    sys.exit(1)
 
 # try:
 #     bot_token = os.environ["BOT_TOKEN"]
