@@ -4,11 +4,11 @@ import asyncio
 from ..vars import Var
 from pyrogram import Client
 from utils.config_parser import TokenParser
-from botCode import multi_clients, work_loads, StreamBot
+from botCode import multi_clients, work_loads, bot
 
 class CustomClient(Client):
     async def initialize_clients(self):
-        multi_clients[0] = StreamBot
+        multi_clients[0] = bot
         work_loads[0] = 0
         all_tokens = TokenParser().parse_from_env()
         if not all_tokens:
@@ -23,10 +23,10 @@ class CustomClient(Client):
                     print("This will take some time, please wait...")
                 client = await Client(
                     name=":memory:",
-                    api_id=Var.API_ID,
-                    api_hash=Var.API_HASH,
+                    api_id=api_id,
+                    api_hash=api_hash,
                     bot_token=token,
-                    sleep_threshold=Var.SLEEP_THRESHOLD,
+                    sleep_threshold=sleep_threshold,
                     no_updates=True,
                 ).start()
                 work_loads[client_id] = 0
