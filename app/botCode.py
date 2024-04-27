@@ -1,16 +1,13 @@
-from telethon import TelegramClient, events
-from .config import  api_id, api_hash, debug ,bot_token
+from pyrogram import Client, filters
+from .config import api_id, api_hash, bot_token,workers,sleep_threshold
 
-bot = TelegramClient('bot',api_id,api_hash).start(bot_token)
 
-@bot.on(events.NewMessage(pattern='/start'))
-async def send_welcome(event):
-    await event.reply('Howdy, how are you doing?')
+bot = Client('bot', api_id, api_hash, bot_token=bot_token, workers=worker,sleep_threshold=sleep_threshold)
 
-@bot.on(events.NewMessage)
-async def echo_all(event):
-    await event.reply(event.text)
+@bot.on_message(filters.command('start'))
+async def send_welcome(client, message):
+    await message.reply_text('Howdy, how are you doing?')
 
-def serve():
-  with bot:
-    bot.run_until_disconnected()
+@bot.on_message(filters.text)
+async def echo_all(client, message):
+    await message.reply_text(message.text)
