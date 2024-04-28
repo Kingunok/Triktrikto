@@ -4,3 +4,4 @@ pyrogram
 tgcrypto
 cryptg
 pillow
+pyromod
