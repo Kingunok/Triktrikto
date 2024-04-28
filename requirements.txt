@@ -1,7 +1,7 @@
 aiohttp-jinja2
 pyrogram<=2.0.33
 tgcrypto<=1.2.3
-aiohttp<=3.8.1
+aiohttp
 cryptg
 pillow
 pyromod
