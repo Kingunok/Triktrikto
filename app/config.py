@@ -56,7 +56,7 @@ except (KeyError, ValueError):
 
 
 try:
-    workers = os.environ["WORKERS"]
+    workers = int(os.environ.get("WORKERS", "60"))
     sleep_threshold = os.environ["SLEEP_THRESHOLD"]
     multi_clients = True
     name = 'tgindex'
