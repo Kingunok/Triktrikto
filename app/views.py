@@ -6,7 +6,9 @@ from aiohttp import web
 import aiohttp_jinja2
 from markupsafe import Markup
 
-from pyrogram.types import User, Chat, Channel
+from pyrogram.types import User
+from pyrogram.raw.base import Chat
+from pyrogram.raw.types import Channel
 from .util import get_file_name, get_human_size
 from .config import otg_settings, chat_ids, enable_otg
 
