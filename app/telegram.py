@@ -2,7 +2,7 @@ import math
 import logging
 import asyncio
 from pyrogram import Client
-from utils.config_parser import TokenParser
+from util import TokenParser
 from botCode import multi_clients, work_loads, bot
 from config import workers,multi_clients,bot_token,api_hash,api_id,sleep_threshold 
 
