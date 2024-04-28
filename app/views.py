@@ -4,7 +4,7 @@ import io
 from PIL import Image, ImageDraw
 from aiohttp import web
 import aiohttp_jinja2
-from jinja2 import Markup
+from markupsafe import Markup
 
 from pyrogram.types import User, Chat, Channel
 from .util import get_file_name, get_human_size
