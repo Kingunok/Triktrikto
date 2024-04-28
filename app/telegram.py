@@ -6,6 +6,21 @@ from .util import TokenParser
 from .botCode import multi_clients, work_loads, bot
 from .config import workers,multi_clients,bot_token,api_hash,api_id,sleep_threshold 
 
+
+
+def get_appropriated_part_size(file_size):
+    if file_size < (512 * 1024 * 1024):
+        return 512 * 1024
+    elif file_size < (2 * 1024 * 1024 * 1024):
+        return 1024 * 1024
+    elif file_size < (4 * 1024 * 1024 * 1024):
+        return 2 * 1024 * 1024
+    else:
+        return 4 * 1024 * 1024
+
+
+
+
 class CustomClient(Client):
     async def initialize_clients(self):
         multi_clients[0] = bot
@@ -43,7 +58,7 @@ class CustomClient(Client):
             print("No additional clients were initialized, using default client")
 
     async def download(self, file, file_size, offset, limit):
-        part_size = 512 * 1024
+        part_size = get_appropriated_part_size(file_size)
         first_part_cut = offset % part_size
         first_part = math.floor(offset / part_size)
         last_part_cut = part_size - (limit % part_size)
