@@ -80,7 +80,7 @@ async def setup_routes(app, handler):
 
     else:
         for chat_id in include_chats:
-            chat = await client.get_entity(chat_id)
+            chat = await client.get_chat(chat_id)
             alias_id = generate_alias_id(chat)
             log.debug(f"Index added for {chat.id} :: {chat.title} at /{alias_id}")
 
